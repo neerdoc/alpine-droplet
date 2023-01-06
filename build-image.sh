@@ -9,6 +9,7 @@ F=alpine-v.$(cat latest-releases.yaml | grep "version:" | awk '{print $2}')
 if [ "$CI" = "true" ]
 then
     echo "Running under CI"
+    echo "$F"
     echo $F > version
 fi
 
