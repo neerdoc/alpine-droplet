@@ -2,7 +2,9 @@
 
 set -o errexit
 
-F=alpine-virt-image-$(date +%Y-%m-%d-%H%M)
+wget http://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86_64/latest-releases.yaml
+F=alpine-v.$(cat latest-releases.yaml | grep "version:" | awk '{print $2}')
+#F=alpine-virt-image-$(date +%Y-%m-%d-%H%M)
 
 if [ "$CI" = "true" ]
 then
