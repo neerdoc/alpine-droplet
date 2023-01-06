@@ -32,10 +32,16 @@ jobs:
         id: getversion
         run: echo "::set-output name=version::$(cat version)"
 
-      - uses: marvinpinto/action-automatic-releases@latest
-        if: github.ref == 'refs/heads/master'
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          files: "*.bz2"
-          automatic_release_tag: ${{ steps.getversion.outputs.version }}
-          prerelease: false
+    - uses: ncipollo/release-action@v1
+      with:
+        # artifacts: "release.tar.gz,foo/*.txt"
+        bodyFile: ".bz2"
+        tag: ${{ steps.getversion.outputs.version }}
+
+      # - uses: marvinpinto/action-automatic-releases@latest
+      #   if: github.ref == 'refs/heads/master'
+      #   with:
+      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+      #     files: "*.bz2"
+      #     automatic_release_tag: ${{ steps.getversion.outputs.version }}
+      #     prerelease: false
