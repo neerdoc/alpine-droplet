@@ -35,7 +35,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           # artifacts: "release.tar.gz,foo/*.txt"
-          bodyFile: "*.bz2"
+          bodyFile: "alpine-virt-image.qcow2.bz2"
           tag: ${{ steps.getversion.outputs.version }}
 
       # - uses: marvinpinto/action-automatic-releases@latest
