@@ -3,7 +3,7 @@
 set -o errexit
 
 wget http://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86_64/latest-releases.yaml
-F=alpine-v.$(cat latest-releases.yaml | grep -m "version:" | awk '{print $2}')
+F=alpine-v.$(cat latest-releases.yaml | grep -m 1 "version:" | awk '{print $2}')
 #F=alpine-virt-image-$(date +%Y-%m-%d-%H%M)
 
 if [ "$CI" = "true" ]
