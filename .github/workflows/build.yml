@@ -30,7 +30,8 @@ jobs:
 
       - name: Read version
         id: getversion
-        run: echo "::set-output name=version::$(cat version)"
+        run: echo "{build_version}={cat version}" >> $GITHUB_OUTPUT
+        # run: echo "::set-output name=version::$(cat version)"
 
       - uses: ncipollo/release-action@v1
         with:
@@ -39,7 +40,8 @@ jobs:
           # bodyFile: "alpine-virt-image.qcow2.bz2"
           # alpine-v.3.17.0.qcow2
           # alpine-v.3.17.0.qcow2.bz2
-          tag: ${{ steps.getversion.outputs.version }}
+          tag: ${{ build_version }}
+          # tag: ${{ steps.getversion.outputs.version }}
 
       # - uses: marvinpinto/action-automatic-releases@latest
       #   if: github.ref == 'refs/heads/master'
