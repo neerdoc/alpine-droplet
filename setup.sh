@@ -7,6 +7,7 @@ rc-update add sshd default
 cat > /etc/network/interfaces <<-EOF
 iface lo inet loopback
 iface eth0 inet dhcp
+iface eth1 inet dhcp
 EOF
 
 ln -s networking /etc/init.d/net.lo
