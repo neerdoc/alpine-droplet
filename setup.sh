@@ -25,6 +25,7 @@ cat > /bin/do-init <<-EOF
 resize2fs /dev/vda
 wget -T 5 http://169.254.169.254/metadata/v1/hostname    -q -O /etc/hostname
 wget -T 5 http://169.254.169.254/metadata/v1/public-keys -q -O /root/.ssh/authorized_keys
+wget -T 5 http://169.254.169.254/metadata/v1/dns/nameservers -q -O /etc/resolv.conf
 hostname -F /etc/hostname
 chmod 600 /root/.ssh/authorized_keys
 rc-update del do-init default
