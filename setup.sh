@@ -66,6 +66,6 @@ chmod +x /bin/do-init
 # Enable do-init service
 rc-update add do-init default
 
-# Enable open-iscsi
-apk add open-iscsi
+# Enable open-iscsi and other dependencies needed for longhorn.
+apk add open-iscsi bash lsblk curl findmnt
 rc-update add iscsid default
