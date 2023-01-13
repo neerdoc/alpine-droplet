@@ -3,11 +3,25 @@
 # Enable openssh server
 rc-update add sshd default
 
-# Configure networking
+# Configure networking WITH ipv6!
+modprobe ipv6
+echo "ipv6" >> /etc/modules
+
 cat > /etc/network/interfaces <<-EOF
 iface lo inet loopback
 iface eth0 inet dhcp
+iface eth0 inet6 auto
 iface eth1 inet dhcp
+iface eth1 inet6 auto
+EOF
+
+cat >> /etc/hosts <<-EOF
+::1             localhost ipv6-localhost ipv6-loopback
+fe00::0         ipv6-localnet
+ff00::0         ipv6-mcastprefix
+ff02::1         ipv6-allnodes
+ff02::2         ipv6-allrouters
+ff02::3         ipv6-allhosts
 EOF
 
 ln -s networking /etc/init.d/net.lo
@@ -51,3 +65,7 @@ chmod +x /bin/do-init
 
 # Enable do-init service
 rc-update add do-init default
+
+# Enable open-iscsi
+apk add open-iscsi
+rc-update add iscsid default
